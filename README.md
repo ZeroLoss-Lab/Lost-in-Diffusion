@@ -1,7 +1,18 @@
-# Lost-in-Diffusion (ACL 2026 Findings)
+# Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models
 
-This repository is the open-source release for our ACL 2026 Findings paper.
-It combines:
+## Introduction
+
+This project investigates the reliability of Diffusion Large Language Models (dLLMs), with a particular focus on hallucination patterns and diffusion-specific failure modes. Through controlled comparisons with autoregressive baselines matched in architecture, scale, or pretrained weights, we systematically study how diffusion-based generation differs in factual consistency and faithfulness. We further examine the role of inference-time compute under different decoding strategies, showing that while non-sequential denoising enables continuous refinement, current dLLMs remain more prone to hallucination and exhibit distinctive failure modes such as premature termination, incomplete denoising, and context intrusion. We hope this repository provides a clear and reproducible foundation for evaluating, understanding, and improving the reliability of dLLMs.
+
+![dllms](./assets/dllm_hallucination.png)
+
+---
+
+
+
+## Repository Layout
+
+This repository combines:
 
 - `HalluLens` for hallucination evaluation,
 - diffusion LLM codebases (`Dream`, `LLaDA`, `Fast-dLLM`), and
@@ -10,13 +21,7 @@ It combines:
 We provide `server.py` compatibility adapters inside dLLM codebases so they can be evaluated through HalluLens with a unified interface.
 For projects that provide both base and instruction-tuned checkpoints, we additionally provide `server_instruct.py`.
 
-## Important Reproducibility Note
-
-If you aim to fully reproduce our reported numbers, we strongly recommend using these adapter scripts (`server.py`) only as references and re-implementing the same interfaces with a modern dLLM inference framework (for example, dInfer).
-
-Our experiments were conducted in parallel with the development of current dLLM serving stacks, so the released adapters prioritize correctness and compatibility over inference speed.
-
-## Repository Layout
+**Note**: If you aim to reproduce our reported numbers, we strongly recommend using these adapter scripts (`server.py`) only as references and re-implementing the same interfaces with a modern dLLM inference framework (for example, [dInfer](https://github.com/inclusionAI/dInfer)). Our experiments were conducted in parallel with the development of current dLLM serving stacks, so the released adapters prioritize correctness and compatibility over inference speed.
 
 ```text
 .
@@ -25,16 +30,13 @@ Our experiments were conducted in parallel with the development of current dLLM 
 ├── LLaDA/          # LLaDA dLLM code + HalluLens adapter servers
 ├── Fast-dLLM/      # Fast-dLLM code + adapter server (v2 and llada paths)
 ├── LLaDA-2.0/      # Additional local adapter for LLaDA 2.0 style serving
-├── AR-LLMs/        # vLLM launcher scripts for AR baselines
-└── Lost-in-Diffusion.pdf  # Current paper draft in this repository
+└── AR-LLMs/        # vLLM launcher scripts for AR baselines
 ```
 
 ## Quick Start
 
 ### 1) Environment
 
-The repository is multi-project by design, so dependencies are partly component-specific.
-A practical baseline is:
 
 ```bash
 python -m venv .venv
@@ -98,31 +100,7 @@ cd HalluLens
 bash scripts/task1_precisewikiqa.sh
 bash scripts/task2_longwiki.sh
 bash scripts/task3-1_mixedentities.sh
-bash scripts/task3-2_generatedentities.sh
 ```
-
-`task3-2_generatedentities.sh` requires API keys for external services (`BRAVE_API_KEY`, `OPENAI_KEY`).
-
-## Adapter Interface Summary
-
-| Adapter | Default endpoint | Response style |
-|---|---|---|
-| `Dream/server.py`, `Dream/server_instruct.py` | `POST /v1/` | `{\"response\": \"...\", \"token_count\": N}` |
-| `LLaDA/server.py`, `LLaDA/server_instruct.py` | `POST /v1/` | OpenAI-like `choices[0].message.content` |
-| `Fast-dLLM/v2/server.py` | `POST /v1/` | `{\"response\": \"...\", \"token_count\": N}` |
-| `LLaDA-2.0/server.py` | `POST /v1/` | OpenAI-like `choices[0].message.content` |
-| `Fast-dLLM/llada/server.py` | `POST /v1/chat/completions` | OpenAI-like `choices[0].message.content` |
-
-HalluLens-side model routing is centralized in `HalluLens/utils/lm.py`.
-
-## Paper Information (To Be Finalized)
-
-- Title: `TODO`
-- Authors: `TODO`
-- Venue: `ACL 2026 Findings (Accepted)`
-- ACL Anthology link: `TODO`
-- arXiv link: `TODO`
-- Local draft: `Lost-in-Diffusion.pdf`
 
 ## Citation
 
