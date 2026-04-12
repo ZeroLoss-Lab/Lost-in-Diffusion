@@ -1,5 +1,6 @@
 <h1 align="center">Lost in Diffusion</h1>
 
+> This repository contains code for our paper "Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models" accepted to ACL 2026 Findings.
 
 ## Introduction
 
