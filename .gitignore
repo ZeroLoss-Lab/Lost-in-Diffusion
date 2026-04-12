@@ -1,0 +1,53 @@
+# ------------------------------
+# OS / Editor
+# ------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ------------------------------
+# Python
+# ------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Logs / temp
+*.log
+*.out
+*.tmp
+*.swp
+
+# ------------------------------
+# Project-specific large artifacts
+# ------------------------------
+HalluLens/data/longwiki/
+HalluLens/data/nonexistent_refusal/
+HalluLens/data/nonsense_all/
+HalluLens/data/precise_qa/
+HalluLens/data/wiki_data/
+HalluLens/output/
+HalluLens/output_base/
+HalluLens/output.log
+
+LLaDA/logs/
+
+# Keep repository-local helper marker out of commits
+.codex
