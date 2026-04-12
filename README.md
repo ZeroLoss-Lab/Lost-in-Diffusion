@@ -1,4 +1,5 @@
-# Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models
+<h1 align="center">Lost in Diffusion</h1>
+
 
 ## Introduction
 
