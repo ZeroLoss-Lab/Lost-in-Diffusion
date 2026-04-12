@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This project investigates the reliability of Diffusion Large Language Models (dLLMs), with a particular focus on hallucination patterns and diffusion-specific failure modes. Through controlled comparisons with autoregressive baselines matched in architecture, scale, or pretrained weights, we systematically study how diffusion-based generation differs in factual consistency and faithfulness. We further examine the role of inference-time compute under different decoding strategies, showing that while non-sequential denoising enables continuous refinement, current dLLMs remain more prone to hallucination and exhibit distinctive failure modes such as premature termination, incomplete denoising, and context intrusion. We hope this repository provides a clear and reproducible foundation for evaluating, understanding, and improving the reliability of dLLMs.
+This paper investigates the reliability of Diffusion Large Language Models (dLLMs), with a particular focus on hallucination patterns and diffusion-specific failure modes. Through controlled comparisons with autoregressive baselines matched in architecture, scale, or pretrained weights, we systematically study how diffusion-based generation differs in hallucination. We further examine the role of inference-time compute under different decoding strategies, showing that while non-sequential denoising enables continuous refinement, current dLLMs remain more prone to hallucination and exhibit distinctive failure modes such as premature termination, incomplete denoising, and context intrusion. We hope this repository provides a clear and reproducible foundation for evaluating, understanding, and improving the reliability of dLLMs.
 
 ![dllms](./assets/dllm_hallucination.png)
 
@@ -104,6 +104,8 @@ bash scripts/task3-1_mixedentities.sh
 ```
 
 ## Citation
+
+If you find this work useful, please cite:
 
 ```bibtex
 @inproceedings{lost_in_diffusion,
