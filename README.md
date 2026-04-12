@@ -111,7 +111,7 @@ If you find this work useful, please cite:
 ```bibtex
 @inproceedings{lost_in_diffusion,
   title     = {Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models},
-  author    = {Guo, Zhengnan and Fei, Tan},
+  author    = {Guo, Zhengnan and Tan, Fei},
   booktitle = {Findings of the Association for Computational Linguistics: ACL 2026},
   year      = {2026},
 }
